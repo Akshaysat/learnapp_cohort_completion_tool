@@ -36,7 +36,14 @@ st.markdown(
 st.write("----")
 
 # Kraken Auth Token
-token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2YjliODBkMC0yNDMyLTExZWItYjI2NS0zYjBiYWNkOGE1ZjYiLCJpcCI6IjQ5LjI0OS42OS4yMiwgMTMwLjE3Ni4xODguMjMxIiwiY291bnRyeSI6IklOIiwiaWF0IjoxNjcwMjI3NzQ4LCJleHAiOjE2NzA4MzI1NDgsImF1ZCI6ImxlYXJuYXBwIiwiaXNzIjoiaHlkcmE6MC4wLjEifQ.4nSRSLkkdmQhi0pBVcu5i9HE8h8YNiGfW2rZX9vEQHM"
+# functions for getting user specific course progress
+url = "https://e3d72bp6aa.execute-api.ap-south-1.amazonaws.com/"
+payload = {}
+headers = {}
+response = requests.request("GET", url, headers=headers, data=payload)
+access_token = response.text
+
+token = "Bearer " + access_token
 
 # Function to get the data of all the courses, classes, workshops and advanced courses on LearnApp
 @st.cache()
