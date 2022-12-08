@@ -232,7 +232,7 @@ if st.button("Find Completion %"):
 
     df_progress["completion %"] = df_progress.mean(axis=1)
 
-    completed_users = df_progress[df_progress["completion %"] >= 80][
+    completed_users = df_progress[df_progress["completion %"] >= 75][
         "completion %"
     ].count()
     st.metric("Completion Rate", f"{round(completed_users * 100 / email_len, 2)}%")
