@@ -213,17 +213,23 @@ if st.button("Find Completion %"):
     my_bar = st.progress(p_time)
 
     for user in user_email:
+        user = user.strip().lower()
         b = {}
-        a = la_progress(user)
-        for i in a:
-            try:
-                if i["courseId"] in list(courses.values()):
-                    b.update({get_key(i["courseId"]): i["percentage"]})
-            except:
-                continue
-        user_progress[user] = b
-        p_time += 1
-        my_bar.progress(p_time / email_len)
+        try:
+            a = la_progress(user)
+            st.write(a)
+            for i in a:
+                try:
+                    if i["courseId"] in list(courses.values()):
+                        b.update({get_key(i["courseId"]): i["percentage"]})
+                except:
+                    continue
+            user_progress[user] = b
+            p_time += 1
+            my_bar.progress(p_time / email_len)
+        except:
+            p_time += 1
+            continue
 
     df_progress = pd.DataFrame(user_progress).T
     df_progress.fillna(0, inplace=True)
