@@ -217,7 +217,6 @@ if st.button("Find Completion %"):
         b = {}
         try:
             a = la_progress(user)
-            st.write(a)
             for i in a:
                 try:
                     if i["courseId"] in list(courses.values()):
