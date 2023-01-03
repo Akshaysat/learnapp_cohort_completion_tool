@@ -232,6 +232,8 @@ if st.button("Find Completion %"):
 
     df_progress = pd.DataFrame(user_progress).T
     df_progress.fillna(0, inplace=True)
+    # df_progress.reset_index(inplace=True)
+    # df_progress.rename(columns={df_progress.columns[0]: "Email"}, inplace=True)
 
     my_bar.empty()
 
@@ -247,7 +249,7 @@ if st.button("Find Completion %"):
     st.write("----")
 
     # code to download it as csv
-    st.subheader("Donwload File")
+    st.subheader("Download File")
 
     @st.cache
     def convert_df(df):
