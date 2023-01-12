@@ -46,7 +46,7 @@ access_token = response.text
 token = "Bearer " + access_token
 
 # Function to get the data of all the courses, classes, workshops and advanced courses on LearnApp
-@st.cache()
+# @st.cache()
 def get_learnapp_content():
 
     url = "https://catalog.prod.learnapp.com/catalog/discover"
@@ -175,6 +175,26 @@ def get_key(val):
 
 # Code for fetching LA data and selecting the courses in the cohort
 content_data = get_learnapp_content()
+content_data.update(
+    {
+        "intro-to-trading-terminal": {
+            "title": "Intro to Trading Terminal",
+            "canonicalTitle": "intro-to-trading-terminal",
+            "id": "4fde29ab-6122-46fa-8247-19c26dccb25c",
+            "totalPlaybackTime": 4918,
+            "assetUrl": "https://assets.learnapp.com/catalog/courses/4fde29ab-6122-46fa-8247-19c26dccb25c/b63ad44d-e3fb-42aa-b7b4-cf474019f4bb.jpeg",
+            "contentType": "courses",
+        },
+        "which-type-of-trader-are-you": {
+            "title": "Which type of trader are you?",
+            "canonicalTitle": "which-type-of-trader-are-you",
+            "id": "ad2b81ed-b70f-43fc-a3e0-040f46f5f287",
+            "totalPlaybackTime": 1155,
+            "assetUrl": "https://assets.learnapp.com/catalog/workshops/ad2b81ed-b70f-43fc-a3e0-040f46f5f287/2a5f4959-b790-4355-9e63-36a153070349.jpeg",
+            "contentType": "workshop",
+        },
+    }
+)
 
 courses = {}
 courses_list = st.multiselect(
