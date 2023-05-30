@@ -196,13 +196,18 @@ content_data.update(
     }
 )
 
+content_type = st.multiselect("Select Content Type",["courses","classes","workshops","advanced-courses"])
+selected_content_data = {key:content_data[key] for key in content_data if content_data[key]["contentType"] in content_type}
+
+
 courses = {}
+
 courses_list = st.multiselect(
-    " Create a module by selecting any course/class/workshop/advanced course",
-    content_data.keys(),
+    "Create a module by selecting any course/class/workshop/advanced course",
+    selected_content_data.keys(),
 )
 
-courses = {i: content_data[i]["id"] for i in content_data if i in courses_list}
+courses = {i: selected_content_data[i]["id"] for i in selected_content_data if i in courses_list}
 st.write("")
 
 # Code to get the list of users
